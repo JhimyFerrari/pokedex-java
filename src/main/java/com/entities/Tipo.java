@@ -60,6 +60,10 @@ public class Tipo {
         }
     }
 
+    public void addFraqueza(Tipo tipo) {
+        this.fraquezas.add(tipo);
+    }
+
     public String getResistencias() {
         String resistencias = "";
         for (Tipo tipo : this.resistencias) {
@@ -79,6 +83,10 @@ public class Tipo {
         for (Tipo tipo : resistencias) {
             this.resistencias.add(tipo);
         }
+    }
+
+    public void addResistencia(Tipo tipo){
+        this.resistencias.add(tipo);
     }
 
 }

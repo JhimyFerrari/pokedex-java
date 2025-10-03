@@ -1,32 +1,25 @@
 package com.entities;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Pokemon {
     private int numero;
     private String nome;
-    private Tipo tipo1;
-    private Tipo tipo2;
+    private List<Tipo> tipos;
     private int hp;
     private float peso;
     private int altura;
     private boolean evolui;
 
-    public Pokemon(int numero, String nome, Tipo tipo1, Tipo tipo2, int hp, float peso, int altura,
+    public Pokemon(int numero, String nome, List<Tipo> tipos, int hp, float peso, int altura,
             boolean evolui) {
         this.numero = numero;
         this.nome = nome;
-        this.tipo1 = tipo1;
-        this.tipo2 = tipo2;
-        this.hp = hp;
-        this.peso = peso;
-        this.altura = altura;
-        this.evolui = evolui;
-    }
-
-    public Pokemon(int numero, String nome, Tipo tipo1, int hp, float peso, int altura, boolean evolui) {
-        this.numero = numero;
-        this.nome = nome;
-        this.tipo1 = tipo1;
-        this.tipo2 = null;
+        this.tipos = new ArrayList<>();
+        for (Tipo tipo : tipos) {
+            this.tipos.add(tipo);
+        }
         this.hp = hp;
         this.peso = peso;
         this.altura = altura;
@@ -54,13 +47,14 @@ public class Pokemon {
         this.nome = nome;
     }
 
-    public void setTipo(Tipo tipo1, Tipo tipo2) {
-        this.tipo1 = tipo1;
-        this.tipo2 = tipo2;
+    public void setTipo(List<Tipo> tipos) {
+        for (Tipo tipo : tipos) {
+            this.tipos.add(tipo);
+        }
     }
 
-    public Tipo getTipo() {
-        return this.tipo1;
+    public List<Tipo> getTipo() {
+        return this.tipos;
     }
 
     public int getHp() {
@@ -95,16 +89,21 @@ public class Pokemon {
         this.evolui = evolui;
     }
 
-    public String getFraquezas() {
-        String fraquezas = (this.tipo2 == null) ? this.tipo1.getFraquezas()
-                : this.tipo1.getFraquezas() + this.tipo2.getFraquezas();
+    public String getTipoFraquezas() {
+        String fraquezas = "";
+        for (Tipo tipo : tipos) {
+            fraquezas += tipo.getFraquezas() + " ";
+        }
         return fraquezas;
 
     }
 
-    public String getResistencias() {
-        String resistencias = (this.tipo2 == null) ? this.tipo1.getResistencias()
-                : this.tipo1.getResistencias() + this.tipo2.getResistencias();
+    
+    public String getTipoResistencias() {
+        String resistencias = "";
+        for (Tipo tipo : tipos) {
+            resistencias += tipo.getResistencias() + " ";
+        }
         return resistencias;
 
     }
